@@ -1,14 +1,7 @@
-def lower_bound(a,n,x):
-    left = 0 
-    right = n - 1
-    i = (left + right)//2 
-    while (left != i ) and (i!=right) :
-        if a[i]> x : right = i 
-        else : left = i 
-
-    for i in range(left,right+1):
-        if a[i] <= x : return i
-
+from bisect import bisect_left,bisect_right
+import sys
+sys.stdin = open("input.txt","r")
+sys.stdout = open("output.txt","w")
 def solve(a,k,x,n):
     Max = max(a)
     Min = min(a)
@@ -19,24 +12,24 @@ def solve(a,k,x,n):
         for i in range(n - k, n):
             print(a[i],end=' ')
     else :
-        index = lower_bound(a,n,x)
+        index = bisect_left(a,x)
+        # print(index)
         # count = 0
-        left = index -1 
-        right = index + 1
-        Res = ''
-        Res = Res + str(a[index])
-        count = 0
-        while (left >=0 ) and ( right < n) and (count < k):
-            if (x - a[left] < a[right] - x):
-                Res = str(a[left]) + ' ' + Res  
+        left = index - 1
+        right = index
+        Res = list()
+        while k>0:
+            if (abs(a[left]- x ) < abs(a[right]- x)):
+                Res.append(a[left])
                 left-=1
-            elif x - a[left] > a[right] - x:
-                Res = Res + ' ' +  str(a[right])
-                right+=1
             else :
-                Res = str(a[left]) + ' ' + Res  
-                left-=1
-        print(Res)
+                Res.append(a[right])
+                right+=1
+            k-=1
+        Res.sort()
+        for i in Res:
+            print(i,end=' ')
+
 n = int(input())
 a= list(map(int, input().split()))
 k , x = map(int,input().split())
