@@ -2,6 +2,7 @@ import io,os,sys
 # input = io.BytesIO(os.read(0,os.fstat(0).st_size)).readline
 import time
 class Node:
+
     def __init__(self,value):
         self.value = value
         self.next = None
@@ -45,23 +46,8 @@ class LinkedList:
             self.head = self.tail = None
         else :
            self.head = self.head.next
-    def XoaSauNodeq(self,q):
-        if q.next == self.tail:
-            q.next = None
-            self.tail= q
-            return
-        p = q.next
-        q.next= p.next
-        p = None
-
-    def Tim_Truoc(self,a):
-        if self.head is None : return None
-        p = self.head
-        while p != self.tail:
-            if p.next is None : return None
-            if (p.next.value == a): return p
-            p = p.next
-        if p == self.tail: return None
+    
+    
 
     def PrintList(self):
 
@@ -80,37 +66,71 @@ class LinkedList:
     def Dang1(self,x):
         self.ThemCuoi(x)
     def Dang2(self,a,b):
-        x = self.Tim(a)
-        L.ThemSau(x,b)
+        p = self.head
+        while p is not None:
+            if p.value == a : 
+                self.ThemSau(p,b)
+                return
+            p = p.next
+        self.ThemDau(b)        
+        
     def Dang3(self,a):
         if self.head is None : return
         if self.head.value == a:
             self.XoaDau()
             return
-        x = self.Tim_Truoc(a)
-        if x is not None:
-            self.XoaSauNodeq(x)
-
-    def Dang4(self,n):
-        if self.head is None : return
-        if self.head.value == n: 
-            self.XoaDau()
-        # print(self.head,self.tail)
         x = self.head
-        temp = x
+        Truoc= x 
         while x is not None:
             if x is None : return
-            if x.value == n :
-                if x == self.head and self.tail!= self.head:
+            if x.value == a :
+                if x == self.head :
                     self.head = self.head.next
-                elif self.head == self.tail :
+                    return
+                elif self.tail== x :
+                    Truoc.next = None
+                    self.tail= Truoc 
+                    return       
+                elif x == self.head and self.tail == x :
                     self.head = self.tail = None
                     return
                 else:
-                    temp.next = x.next
+                    Truoc.next = x.next
+                    x = x.next
+                    return
+                
             else :
-                temp = x
+                Truoc = x 
                 x = x.next
+        
+
+    def Dang4(self,n):
+        if self.head is None : return
+        while self.head.value == n: 
+            self.XoaDau()
+            if self.head is None : return
+        # print(self.head,self.tail)
+        x = self.head
+        Truoc= x 
+        while x is not None:
+            if x is None : return
+            if x.value == n :
+                if x == self.head :
+                    self.head = self.head.next
+                elif self.tail== x :
+                    Truoc.next = None
+                    self.tail= Truoc 
+                    return       
+                elif x == self.head and self.tail == x :
+                    self.head = self.tail = None
+                    return
+                else:
+                    Truoc.next = x.next
+                    x = x.next
+            else :
+                Truoc = x 
+                x = x.next
+
 
 
     def Dang5(self):
@@ -119,7 +139,6 @@ class LinkedList:
         self.PrintList()
 
 
-start = time.perf_counter() 
 ONLINE_JUDGE = False
 if not ONLINE_JUDGE:
     sys.stdin = open("input.txt","r")
@@ -130,20 +149,42 @@ while True :
     T = a[0]
     if T == 6 :
         L.Dang6()
-        end = time.perf_counter() 
-        print(end - start)
+        # end = time.perf_counter() 
+        # print(end - start)
         exit()
             
     elif T == 5 :
         L.Dang5()
+        # print("5\n------")
+        # L.PrintList()
     elif T == 4 :
         L.Dang4(a[1])
+        # print(T,a[1])
+        # print("-------")
+        # L.PrintList()
+
     elif T == 3 :
         L.Dang3(a[1])
+        # print(T,a[1])
+        # print("-------")
+        # L.PrintList()
+
     elif T ==2 :
         L.Dang2(a[1],a[2])
+        # print(T,a[1],a[2])
+        # print("-------")
+        # L.PrintList()
+
     elif T == 1 :
         L.Dang1(a[1])
+        # print(T,a[1])
+        # print("-------")
+        # L.PrintList()
+
     elif T == 0 :
         L.Dang0(a[1])
+    #     print(T,a[1])
+    #     print("-------")
+    #     L.PrintList()
+    # print("\n")
 
