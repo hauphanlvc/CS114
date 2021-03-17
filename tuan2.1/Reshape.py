@@ -1,31 +1,30 @@
 import io,os,sys
 # input=sys.stdin.readline
-import sys
+#input = io.BytesIO(os.read(0,os.fstat(0).st_size)).readline
 sys.stdin = open("input.txt","r")
 sys.stdout = open("output.txt","w")
-n,m=map(int,input().split())
-arr=list()
-Res = '' 
-rr,c=map(int,input().split())
-for i in range(n):
-    a = list(map(int,input().split()))
-    for x in a:
-        Res+=str(x)
-    arr.append(a)
-if n*m!=rr*c:
+n , m = map(int,input().split())
+r , c = map(int,input().split())
+# a = list()
+# for i in range(n):
+#     b = list(map(int,input().split()))
+#     a.append(b)
+
+if n*m != r*c or (n == r and m==c ):
     for i in range(n):
-        print(*arr[i]) 
-else:
-    i=0
-    j=c
-    while rr>0:
-        for k in range(i,j):
-            print(Res[k],end=' ')
-        print()
-        i+=c
-        j+=c
-        rr-=1
-    
+        # sys.stdout.write(" ".join(map(str,a[i])) + "\n")
+        x = input()
+        print(x)
 
-
-
+else :
+   i = 0 
+   stack = list()
+   kq = list()
+   while i < n or len(stack)>0 :
+        while len(stack) < c :
+           x = input()
+           x = x.split()
+           stack.extend(x)
+           i+=1
+        sys.stdout.write(" ".join(map(str,stack[:c])) + "\n")
+        stack = stack[c:]
