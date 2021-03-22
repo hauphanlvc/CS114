@@ -1,16 +1,26 @@
-n = int(input())
-if n < 10 :
+n = (input())
+if int(n) < 10 :
     print(2)
 else:
-    a = list()
-    a.append(0)
-    a.append(0)
-
-    for i in range(2,14):
-        a.append(a[i-1]+ 18)
-    SoChuSoCuaN = len(str(n))
-    SoChuSoCuaNtru1 = len(str(n-1))
-    n -= 1
-    n = str(n)
-    SoDauCuaNtru1 = n[0]
-    print(SoChuSoCuaNtru1)
+    # Sum = 1 + len(str(n))
+    # x = dict()
+    # for i in range(0,14):
+    #     x[i] = 0
+    # for i in range(2,n):
+    #     if i % 10 == 0 :
+    #         Sum+= len(str(i)) 
+    #         # print(len(str(i)))
+    #         x[len(str(i))] += 1
+    # for i in range(0,14):
+    #     if x[i] != 0 : 
+    #         print(i,x[i])
+    # print("-------\n{}".format(Sum))
+    SoLuong = (((int(n) - 1)//10) * 10 - 10** (len(str(int(n)-1))-1))//10 + 1
+    
+    Sum1 = 1 + len(n)
+    for i in range(2,len(n)):
+        # print(i,i-2)
+        Sum1 += i * 9 * (10 **(i-2 ))
+        # print(i * 9 * (10 **(i-2 )))
+    Sum1+= len(n)*SoLuong
+    print(Sum1)

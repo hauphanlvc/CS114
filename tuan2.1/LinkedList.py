@@ -145,7 +145,7 @@ if not ONLINE_JUDGE:
     sys.stdout = open("output.txt","w")
 L = LinkedList()
 while True :
-    a = ([int(x) for x in input().split()])
+    a = list
     T = a[0]
     if T == 6 :
         L.Dang6()

@@ -1,0 +1,12 @@
+{
+"InputOutput": {
+	"prefix": "HauInputOutput",
+	"body": [
+		"# input = io.BytesIO(os.read(0,os.fstat(0).st_size)).readline",
+		"import sys",
+		"sys.stdin = open(\"${1:NameInputFile}.txt\",\"r\")",
+		"sys.stdout = open(\"${2:NameOutputFile}.txt\",\"w\")"
+	],
+	"description": "Input Output"
+}
+}
