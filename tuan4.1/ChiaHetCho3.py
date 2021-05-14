@@ -5,7 +5,7 @@ n = str(int(n))
 Sum = 0 
 for i in n:
     Sum+=int(i)
-
+    
 # Tim 1 chu so lam cho m lon nhat ma chia het cho 3 , khac m 
 k = 0
 KT = True
